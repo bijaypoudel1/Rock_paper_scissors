@@ -1,38 +1,36 @@
 import 'dart:io';
 import 'dart:math';
-enum Move {
-  rock,paper,scissors,
-}
-void main(){
-  while(true){
-    int rnd= Random().nextInt(3);
 
-    stdout.write('Rock, Paper or Scissors (r,p,s)  ');
-    final input= stdin.readLineSync();
-    if(input=='r'||input=='p'||input=='s'){
-
-    var ai = Move.values[rnd];
-    print('you choose $input');
-    print('AI choose $ai');
-    if(input=='r'&&ai==Move.rock || input=='p'&&ai==Move.paper || input=='s'&&ai==Move.scissors){
-      print('Draw ');
+void main() {
+  while (true) {
+    print('Player 1 :  r for rock ,  p for paper , s for sissors');
+    String? p1 = stdin.readLineSync();
+    if (p1 == null || p1 != 'r' && p1 != 'p' && p1 != 's') {
+      print('Invalid input');
+    } else {
+      print('Player 1 choose $p1 ');
+      var c = Random().nextInt(3).toString();
+      if (c == '0') {
+        c = 'p';
+      } else if (c == '1') {
+        c = 'r';
+      } else if (c == '2') {
+        c = 's';
+      }
+      print('Computer choose $c');
+      if (p1 == 'r' && c == 's' ||
+          p1 == 'p' && c == 'r' ||
+          p1 == 'r' && c == 's') {
+        print('You win');
+      } else if (c == 'r' && p1 == 's' ||
+          c == 'p' && p1 == 'r' ||
+          c == 'r' && p1 == 's') {
+        print('Computer wins');
+      } else if (c == 'r' && p1 == 'r' ||
+          c == 'p' && p1 == 'p' ||
+          c == 's' && p1 == 's') {
+        print('Draw ');
+      }
     }
-    else if(input=='r'&&ai==Move.scissors || input=='s' &&ai==Move.paper||input=='p'&&ai==Move.rock ){
-      print('You win  ');
-    }
-    else {
-      print('Computer wins ');
-    }
-
-    // print(ai);
-    }
-    else if(input=='q'){
-      break;
   }
-    else{
-      print('invalid input');
-  }
-  }
-
-
 }
